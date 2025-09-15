@@ -1,0 +1,77 @@
+	# session 5, second part #
+
+- Network:
+
+IP address -> layer 3
+unique address assigned to each node
+IPv4, IPv6
+
+Port -> layar 4 and above
+distinguishes different services on the same host
+16 bit -> 65535
+
+IP:Port -> a specific socket
+
+
+Protocols:
+- TCP	: a reliable connection at layar 4
+- UDP	: a connectionless protocol at layer 4
+- ICMP	: a troubleshooting protocol at layer 3
+
+
+OSI		-> 7 layer
+TCP/IP	-> 4 layer
+
+
+IPv4	: in 4 octets(32 bit)
+we solve problem lack of IPv4s with public/private IPs
+localhost -> 127.0.0.1
+
+IPv4 classes -> A to E
+
+
+ip command
+
+ip link -> shows interfaces installed on the system
+@ it will also work with something like "ip lin" or "ip l"
+
+# ip link set dev <interface_name> <UP/DOWN>
+# ip link set dev <interface_name> address <custom_MAC_address>
+
+
+ip address -> shows information about interfaces
+
+# ip address add 192.168.10.10/24 dev <interface_name>
+# ip a del 192.168.10.10/24 dev <interface_name>
+
+
+ip route -> to manage the routing of layer 3 communications
+
+# ip route show(the default command)
+# ip route add/del <routing_settings>
+	ip route del default via 192.168.206.2
+	
+
+@ changes on MAC and IP address or routing rules are not persistent.
+@ in every distrobution we have a different method to make changes permanent
+
+ubuntu server 18>=	-> netplan
+
+we set the configurations in a(any) .yaml file inside the /etc/netplan
+
+# netplan try	: to temporary set the new config on the machine
+# netplan apply	: to set the new config
+	@ it is good practice to use --debug with apply
+
+
+ping	: use ICMP to see if the destination is reachable
+	-s	: to determine the size of each packet 
+	-c	: to determine number of packets(endless is default)
+
+
+ss	: to see open ports on the machine
+	-t	: TCP sockets
+	-u	: UDP sockets
+	-l	: listening sockets
+	-n/ -r	: show numberic/service_name ports
+	-p	: show procceses running on each port
